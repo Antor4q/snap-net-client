@@ -1,10 +1,32 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "../../../../public/logo3.png"
 import bg from "../../../../public/bg2.jpg"
 import { CiUser } from "react-icons/ci";
 import { FcGoogle } from "react-icons/fc";
+import useAxiosPublic from "../../../hooks/useAxiosPublic";
+import { useMutation } from "@tanstack/react-query";
+import toast, { Toaster } from "react-hot-toast";
+import useAuth from "../../../hooks/useAuth";
 
 const SignUp = () => {
+
+    const axiosPublic = useAxiosPublic()
+    const {signUp} = useAuth()
+    const navigate = useNavigate()
+ 
+    const {mutateAsync} = useMutation({
+        mutationKey: ['user'],
+        mutationFn: async(userInfo)=>{
+            const {data} = await axiosPublic.post("/users",userInfo)
+            return data
+        },
+        onSuccess : ()=>{
+
+            toast.success("You have successfully sign up")
+            navigate("/")
+        }
+    })
+
     const handleSignUp = e => {
         e.preventDefault()
         const form = e.target
@@ -13,6 +35,13 @@ const SignUp = () => {
        
         const email = form.email.value
         const password = form.password.value
+        signUp(email, password)
+        .then(result => {
+            console.log(result)
+        })
+        .catch(error => {
+            console.log(error.message)
+        })
         
         const user = {
           
@@ -21,7 +50,10 @@ const SignUp = () => {
             password,
            
         }
-        console.log(user)
+      
+        mutateAsync(user)
+
+
     }
     return (
         <div className="bg-no-repeat bg-center" style={{backgroundImage: `url(${bg})`}}>
@@ -39,7 +71,7 @@ const SignUp = () => {
                                 <CiUser  className="w-6 h-6 mx-3 text-gray-300 dark:text-gray-500" />
                             </span>
 
-                            <input type="text" name="userName" className="block w-full py-3 text-gray-700 bg-white border rounded-lg px-11 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" placeholder=" username"/>
+                            <input type="text" name="userName" className="block  lowercase w-full py-3 text-gray-700 bg-white border rounded-lg px-11 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" placeholder=" username"/>
                         </div>
                        
                       
@@ -67,7 +99,7 @@ const SignUp = () => {
                             <button className="w-full px-6 py-3 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-pink-600 rounded-lg hover:bg-pink-400 focus:outline-none focus:ring focus:ring-pink-300 focus:ring-opacity-50">
                                 Sign up
                             </button>
-
+                            <Toaster />
                             <p className="mt-4 text-center text-white dark:text-gray-400">or sign in with</p>
 
                             
@@ -80,13 +112,14 @@ const SignUp = () => {
 
                                <span className="mx-2 text-white">Sign in with Google</span>
                            </button>
+                          
 
                            <div className="mt-6 text-center ">
                                <p  className="text-sm text-white  dark:text-blue-400">
                                    Already have an account ? <Link className="hover:underline text-yellow-500" to="/signIn">Sign in</Link>
                                </p>
                            </div>
-                           <button>Toast</button>
+                          
                     </div>
                 </div>
                
