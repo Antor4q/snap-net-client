@@ -9,8 +9,17 @@ import { CiBookmark } from "react-icons/ci";
 import { CgMoreR } from "react-icons/cg";
 import { BiSolidBadgeCheck } from "react-icons/bi";
 import NavPostModal from "../components/NavPostModal";
+import useAuth from "../hooks/useAuth";
 
 const Navbar = () => {
+    const {logout} = useAuth()
+  
+    const handleLogOut = ()=> {
+        logout()
+        .than(()=>{})
+        .catch(()=>{})
+    }
+
     return (
         <div className="min-h-screen ">
             <Link to="/" className="w-36  h-28"><img className="w-36 h-28" src={logo} alt="" /></Link>
@@ -35,7 +44,9 @@ const Navbar = () => {
                 <ul tabIndex={0} className="dropdown-content   text-xl gap-2 font-semibold    menu rounded-box z-[1] w-60 p-2 ">
                     <li><NavLink className="flex items-center  rounded-xl p-3   gap-5"><BiSolidBadgeCheck />Apply for badge</NavLink></li>
                     <li><NavLink className="flex items-center  rounded-xl p-3  gap-5"><MdSettings/>Settings</NavLink></li>
-                    <li><button className="flex items-center  rounded-xl p-3  gap-5"><MdLogout /> Log Out</button></li>
+                    <li>
+                        <button onClick={()=>handleLogOut()} className="flex items-center  rounded-xl p-3  gap-5"><MdLogout /> Log Out</button>
+                    </li>
                     <li><button className="flex items-center  rounded-xl p-3  gap-2"><MdOutlineDarkMode /> Dark mode</button></li>
                 </ul>
             </div>
