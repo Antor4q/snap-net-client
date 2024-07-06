@@ -8,6 +8,7 @@ import { GoPlusCircle } from "react-icons/go";
 import { CiBookmark } from "react-icons/ci";
 import { CgMoreR } from "react-icons/cg";
 import { BiSolidBadgeCheck } from "react-icons/bi";
+import NavPostModal from "../components/NavPostModal";
 
 const Navbar = () => {
     return (
@@ -21,7 +22,10 @@ const Navbar = () => {
                     <li><NavLink to="/explore" className="flex items-center hover:bg-white rounded-xl p-3 hover:bg-opacity-10 gap-5"><MdOutlineExplore />Explore</NavLink></li>
                     <li><NavLink to="/messages" className="flex items-center hover:bg-white rounded-xl p-3 hover:bg-opacity-10 gap-5"><AiOutlineMessage /> Messages</NavLink></li>
                     <li><NavLink to="/notifications" className="flex items-center hover:bg-white rounded-xl p-3 hover:bg-opacity-10 gap-5"><IoMdNotificationsOutline /> Notifications</NavLink></li>
-                    <li><NavLink className="flex items-center hover:bg-white rounded-xl p-3 hover:bg-opacity-10 gap-5"><GoPlusCircle /> Post now</NavLink></li>
+                    <li>
+                        <button className="flex items-center hover:bg-white rounded-xl p-3 hover:bg-opacity-10 gap-5"  onClick={()=>document.getElementById('my_modal_3').showModal()}><GoPlusCircle /> Post now</button>
+                        <NavPostModal/>
+                        </li>
                     <li><NavLink to="/bookmarks" className="flex items-center hover:bg-white rounded-xl p-3 hover:bg-opacity-10 gap-5"><CiBookmark /> Bookmarks</NavLink></li>
                     <li><NavLink to="/profile" className="flex items-center hover:bg-white rounded-xl p-3 hover:bg-opacity-10 gap-5"><img className="w-5 rounded-full " src="https://i.ibb.co/m51D1ZV/black2.jpg" alt="" /> Profile</NavLink></li>
                 </ul>
