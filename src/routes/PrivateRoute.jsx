@@ -12,12 +12,10 @@ const PrivateRoute = ({children}) => {
          </div>
         </>
     }
-
-    if(user){
+   if(user){
         return children
     }
-
-   return <Navigate to="/signIn" ></Navigate>
+     return <Navigate to="/signIn" ></Navigate>
  
 };
 

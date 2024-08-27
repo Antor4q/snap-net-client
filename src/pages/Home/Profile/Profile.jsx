@@ -4,9 +4,14 @@ import ProfileTab from "../../../components/ProfileTab";
 import ContactModal from "../ContactModal/ContactModal";
 import { MdEdit } from "react-icons/md";
 import UpdateProfile from "../../UpdateProfile/UpdateProfile";
+import useAuth from "../../../hooks/useAuth";
 
 
 const Profile = () => {
+
+    const {user} = useAuth()
+
+    console.log(user)
     
     return (
         <div className="border min-h-screen ">
