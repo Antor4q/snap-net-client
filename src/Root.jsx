@@ -6,7 +6,7 @@ import RightNav from "./pages/Home/RightNav/RightNav";
 
 const Root = () => {
     return (
-       <div className="bg-base-300 min-h-screen ">
+       <div className=" min-h-screen ">
            <div className="flex px-16 min-h-screen border-white border-4 gap-10">
            <div className="w-3/12 fixed border-r">
              

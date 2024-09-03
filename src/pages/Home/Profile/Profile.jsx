@@ -36,7 +36,7 @@ const Profile = () => {
                     <div className="flex justify-between">
                     <h3 className="text-2xl font-bold flex gap-1 items-center">Ahmed Antor <BiSolidBadgeCheck className="text-pink-600" /></h3>
                     <div>
-                    <button onClick={()=>document.getElementById('my_modal_3').showModal()} className="bg-base-200 flex items-center gap-1 rounded-xl shadow-xl px-2  font-medium "><MdEdit />  Edit</button>
+                    <button onClick={()=>document.getElementById('my_modal_3').showModal()} className="bg-base-200 flex items-center gap-1 rounded-xl shadow-xl px-2  font-medium "><MdEdit />  Edit Profile</button>
                     <UpdateProfile/>
                     </div>
                     </div>
